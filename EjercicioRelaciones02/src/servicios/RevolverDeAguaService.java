@@ -19,8 +19,8 @@ deben ser aleatorios.*/
     public RevolverDeAgua llenarRevolver(){
         RevolverDeAgua revolverAux = new RevolverDeAgua();
         Random aleatorio = new Random();
-        revolverAux.setPosicionActual(aleatorio.nextInt(7));
-        revolverAux.setPosicionAgua(aleatorio.nextInt(7));
+        revolverAux.setPosicionActual(aleatorio.nextInt(6)+1);
+        revolverAux.setPosicionAgua(aleatorio.nextInt(6)+1);
         return revolverAux;
     }
     
@@ -37,7 +37,7 @@ deben ser aleatorios.*/
     /*• siguienteChorro(): cambia a la siguiente posición del tambor*/
     public void siguienteChorro(RevolverDeAgua revolver){
         if (revolver.getPosicionActual()==6) {
-            revolver.setPosicionActual(0);
+            revolver.setPosicionActual(1);
         }else{
             revolver.setPosicionActual(revolver.getPosicionActual()+1);
         }

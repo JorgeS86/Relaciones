@@ -20,14 +20,14 @@ revolver tira el agua, el jugador se moja. El atributo mojado pasa a false y el 
 devuelve true, sino false.*/
     
     
-    public Boolean disparo(RevolverDeAgua revolver, RevolverDeAguaService RAS){
-        Boolean mojado = false;
+    public boolean disparo(RevolverDeAgua revolver, RevolverDeAguaService RAS){
+        boolean mojado = false;
         if (RAS.mojar(revolver)) {
            mojado = true;
-            RAS.siguienteChorro(revolver);
         }else{
             RAS.siguienteChorro(revolver);
         }
         return mojado;
     }
 }
+

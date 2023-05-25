@@ -33,7 +33,7 @@ y el revolver para guardarlos en los atributos del juego.*/
         if (cantJugadores <= 6) {
             for (int i = 0; i < cantJugadores; i++) {
                 Jugador jugador = new Jugador();
-                jugador.setID(i + 1);
+                jugador.setID(i +1);
                 jugador.setNombre("Jugador " + jugador.getID());
                 jugador.setMojado(JS.disparo(revolver, RAS));
                 jugadores.add(jugador);
@@ -63,21 +63,23 @@ Pensar la lógica necesaria para realizar esto, usando los atributos de la clase
         System.out.println("----------------");
         boolean salir = true;
         do {
-              for (Jugador jugador : jugadores) {
-            if (jugador.getMojado() == false) {
-                System.out.println("El " + jugador.getNombre() + " no se mojó");
-                System.out.println("SIGUIENTE JUGADOR");
-                System.out.println("----------------");
-            } else {
-                System.out.println("El " + jugador.getNombre() + " se mojó");
-                System.out.println(jugador.getNombre() + " Queda ELIMINADO");
-                System.out.println("----------------");
-                jugadores.remove(jugador);
-                salir = false;
-                break;
-            }
-        } 
+             for (Jugador jugador : jugadores) {
+                 System.out.println(jugador);
+                    if (jugador.getMojado() == false) {
+                        System.out.println("El " + jugador.getNombre() + " no se mojó");
+                        System.out.println("SIGUIENTE JUGADOR");
+                        System.out.println("----------------");
+                        
+                    } else {
+                        System.out.println("El " + jugador.getNombre() + " se mojó");
+                        System.out.println(jugador.getNombre() + " Queda ELIMINADO");
+                        System.out.println("----------------");
+                        //jugadores.remove(jugador);
+                        salir = false;
+                        break;
+                    }
+                    jugador.setMojado(JS.disparo(revolver, RAS));
+                }
         } while (salir);
-     
     }
 }
