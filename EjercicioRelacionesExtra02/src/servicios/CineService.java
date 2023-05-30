@@ -58,6 +58,7 @@ public class CineService {
                         if (espectador.getEdad() >= salas.getPelicula().getEdadMin()) {
                             SS.seleccionarAsiento(salas);
                             SS.mostrarSala(salas);
+                            salir = false;
                         } else {
                             System.out.println("NO CUMPLE CON LA EDAD PERMITIDA");
                             System.out.println("Desea elegir otra sala?(S/N)");
