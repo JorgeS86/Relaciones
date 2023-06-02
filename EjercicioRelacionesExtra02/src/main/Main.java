@@ -53,8 +53,8 @@ public class Main {
             int opcion = leer.nextInt();
             switch (opcion) {
                 case 1:
+                    System.out.println("PELICULAS");
                     for (Sala peliculas : cine.getSalas()) {
-                        System.out.println("PELICULAS");
                         System.out.println(peliculas.getPelicula() + " // SALA: " + peliculas.getNombre());
                     }
                     break;
@@ -68,6 +68,8 @@ public class Main {
                     for (Sala sala : cine.getSalas()) {
                         if (salaSel.equalsIgnoreCase(sala.getNombre())) {
                             SSP.mostrarSala(sala);
+                        }else{
+                            System.out.println("La opción seleccionada no es válida");
                         }
                     }
                     break;
