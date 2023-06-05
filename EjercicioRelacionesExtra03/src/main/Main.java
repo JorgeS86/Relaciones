@@ -22,28 +22,75 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner leer = new Scanner(System.in).useDelimiter("\n");
-        
+
         ArrayList<Poliza> polizas = new ArrayList();
         PolizaService PS = new PolizaService();
-        boolean salir = true;
-        do {
-            Poliza poliza = PS.crearPoliza();
-            polizas.add(poliza);
-            System.out.println("Desea agregar otra poliza?");
-            if (leer.next().equalsIgnoreCase("N")) {
-                salir = false;
-            }
-        } while (salir);
-        System.out.println(polizas);
         CuotaService CuotaS = new CuotaService();
-        System.out.println("Seleccione una Póliza");
-        int polizaSel = leer.nextInt();
-        for (Poliza polizasList : polizas) {
-            if (polizaSel==polizasList.getNumPoliza()) {
-                CuotaS.calcularCuotas(polizasList);
+        int contNumPol = 1;
+        boolean salirMenu = true;
+
+        do {
+            System.out.println("----------------");
+            System.out.println("MENU ASEGURADORA");
+            System.out.println("----------------");
+            System.out.println("1-Nueva Poliza");
+            System.out.println("2-Consultar Poliza");
+            System.out.println("3-Borrar Poliza");
+            System.out.println("0-Salir");
+            System.out.println("----------------");
+            System.out.println("Seleccione opción deseada:");
+            int opcion = leer.nextInt();
+
+            switch (opcion) {
+                case 1:
+                    System.out.println("Poliza nro: " + contNumPol);
+                    Poliza poliza = PS.crearPoliza();
+                    poliza.setNumPoliza(contNumPol);
+                    contNumPol++;
+                    polizas.add(poliza);
+
+                    /*for (Poliza polizasList : polizas) {
+                        CuotaS.calcularCuotas(polizasList);
+                    }*/
+                    break;
+                case 2:
+                    if (polizas.isEmpty()) {
+                        System.out.println("No hay polizas para mostrar");
+                    } else {
+                        System.out.println(polizas);
+                        System.out.println("Desea Informar un Pago?(S/N)");
+                        if (leer.next().equalsIgnoreCase("S")) {
+                            System.out.println("Seleccione una Póliza");
+                            int polizaSel = leer.nextInt();
+                            for (Poliza polizasList : polizas) {
+                                if (polizaSel == polizasList.getNumPoliza()) {
+                                    CuotaS.calcularCuotas(polizasList);
+                                }
+                            }
+                        }
+                    }
+
+        break;
+                case 3:
+                    System.out.println(polizas);
+                    System.out.println("Seleccione una Póliza a Borrar");
+                    int polizaBorrar = leer.nextInt();
+                    for (Poliza polizasList : polizas) {
+                        if (polizaBorrar == polizasList.getNumPoliza()) {
+                            polizas.remove(polizasList);
+                            break;
+                        }
+                    }
+                    break;
+                case 0:
+                    System.out.println("Usted ha seleccionado SALIR");
+                    salirMenu = false;
+                    break;
+                default:
+                    System.out.println("La opción seleccionada no es VALIDA");
             }
-        }
-        System.out.println(polizas);
+        } while (salirMenu);
+
     }
-    
+
 }

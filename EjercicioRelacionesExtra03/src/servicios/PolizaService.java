@@ -22,8 +22,9 @@ public class PolizaService {
 
     public Poliza crearPoliza() {
         Poliza polizaAux = new Poliza();
-        System.out.println("Numero de Póliza");
-        polizaAux.setNumPoliza(leer.nextInt());
+        
+        //System.out.println("Numero de Póliza");
+        //polizaAux.setNumPoliza(leer.nextInt());
 
         System.out.println("Fecha de Inicio");
         System.out.println("Día (dd)");
@@ -36,6 +37,7 @@ public class PolizaService {
         polizaAux.setFechaInicio(fechaInicio);
 
         System.out.println("Fecha de Finalización");
+        System.out.println("Día (dd)");
         int diaF = leer.nextInt();
         System.out.println("Mes (mm)");
         int mesF = leer.nextInt() - 1;
@@ -44,8 +46,9 @@ public class PolizaService {
         Date fechaFinal = new Date(anioF, mesF, diaF);
         polizaAux.setFechaFinal(fechaFinal);
 
-        System.out.println("Cuotas");
-        polizaAux.setCuotas(leer.nextInt());
+        int cuotas = polizaAux.getFechaFinal().getMonth() - polizaAux.getFechaInicio().getMonth();
+        polizaAux.setCuotas(cuotas);
+        System.out.println("Cuotas: "+cuotas);
 
         System.out.println("Forma de Pago");
         polizaAux.setFormaPago(leer.next());
@@ -75,6 +78,9 @@ public class PolizaService {
         Vehiculo vehiculo = VS.crearVehiculo();
         polizaAux.setVehiculo(vehiculo);
 
+        CuotaService CuotaSAux = new CuotaService();
+        polizaAux.setCuotasLista(CuotaSAux.calcularCuotasPoliza(polizaAux));
+        
         return polizaAux;
     }
 }
